@@ -65,7 +65,7 @@ export const hero = {
     'UI/UX Engineer',
   ],
   subtitle:
-    "I build interfaces that feel inevitable, fast, reliable, and intuitive. Based in Lagos, Nigeria and open to remote opportunities globally.",
+    "I build interfaces that feel inevitable, fast, reliable, and intuitive. Based in Lagos, Nigeria and open to remote opportunities locally and globally.",
   cta: 'View My Work',
   ctaLink: '#projects',
   ctaSecondary: "Let's Talk",
