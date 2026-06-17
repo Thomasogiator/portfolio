@@ -45,9 +45,9 @@ export function About() {
             <span className="inline-flex items-center gap-2 text-sm text-foreground/60 border border-border/50 rounded-full px-3 py-1">
               <MapPin className="w-3 h-3 text-accent" />
               {about.location}
-              {about.openToRemote && (
+              {/* {about.openToRemote && (
                 <span className="text-accent font-medium">· Open to remote</span>
-              )}
+              )} */}
             </span>
           </motion.div>
 
@@ -84,7 +84,7 @@ export function About() {
           </motion.div>
 
           {/* Currently block */}
-          <motion.div
+          {/* <motion.div
             variants={itemVariants}
             className="p-5 rounded-lg border border-border/50 bg-card/50 backdrop-blur-sm space-y-2"
           >
@@ -101,7 +101,7 @@ export function About() {
               <span className="text-foreground/80 font-medium">Excited about: </span>
               {about.currently.excited}
             </p>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
       </div>
     </section>

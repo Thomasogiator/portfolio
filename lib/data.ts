@@ -22,6 +22,7 @@ export interface Project {
   github?: string;
   isPrivate?: boolean;
   privateNote?: string;
+  note?: string;
   images?: Screenshot[];
 }
 
@@ -83,7 +84,7 @@ export const about = {
     "When I'm not building, I'm thinking about performance, component architecture, and how to make complex workflows feel simple for the people using them.",
   ],
   location: 'Lagos, Nigeria',
-  openToRemote: true,
+  // openToRemote: true,
   stats: [
     { label: 'Years experience', value: '4+' },
     { label: 'Products shipped', value: '6+' },
@@ -134,7 +135,7 @@ export const techStack = {
 export const projects: Project[] = [
   {
     id: '1',
-    title: 'HireMe',
+    title: 'HireMi',
     description: 'A two-sided job platform with real-time employer–candidate messaging built from scratch.',
     longDescription:
       'A full-scale talent marketplace built from scratch as sole frontend engineer with three distinct interface layers (a candidate portal, an employer portal, and a comprehensive admin dashboard). Includes real-time bidirectional chat using WebSockets (Socket.io).',
@@ -213,28 +214,28 @@ export const projects: Project[] = [
         'New features shipped without disrupting existing dashboard workflows the operations team relied on.',
       ],
     },
-    image: '/zojapay_shot1.png',
+    image: '/zoja-logo.jpg',
     tags: ['React', 'TypeScript', 'Redux Toolkit', 'RTK Query', 'Tailwind CSS'],
     link: 'https://zojapay.com',
-    // isPrivate: true,
-    privateNote: 'Internal fintech dashboard, screenshots shared for portfolio purposes only.',
+    isPrivate: true,
+    privateNote: 'Internal fintech dashboard, screenshots unavailable due to data privacy.',
     images: [
-      {
-        src: '/zojapay_shot1.png',
-        caption: 'Admin Dashboard - transaction overview and dashboard summary',
-      },
-      {
-        src: '/zojapay_shot2.png',
-        caption: 'Admin Dashboard - transaction history table with filters',
-      },
-      {
-        src: '/zojapay_shot3.png',
-        caption: 'Admin Dashboard - financial analytics and reporting view',
-      },
-      {
-        src: '/zojapay_shot4.png',
-        caption: 'Admin Dashboard - loan table overview',
-      },
+      // {
+      //   src: '/zojapay_shot1.png',
+      //   caption: 'Admin Dashboard - transaction overview and dashboard summary',
+      // },
+      // {
+      //   src: '/zojapay_shot2.png',
+      //   caption: 'Admin Dashboard - transaction history table with filters',
+      // },
+      // {
+      //   src: '/zojapay_shot3.png',
+      //   caption: 'Admin Dashboard - financial analytics and reporting view',
+      // },
+      // {
+      //   src: '/zojapay_shot4.png',
+      //   caption: 'Admin Dashboard - loan table overview',
+      // },
     ],
   },
   {
@@ -243,6 +244,7 @@ export const projects: Project[] = [
     description: 'Multi-tenant e-commerce SaaS with merchant admin dashboard and customer storefronts.',
     longDescription:
       'Built a multi-tenant SaaS e-commerce platform where each registered merchant gets their own custom-domain storefront. Architected the shared component library, merchant admin dashboard, and customer-facing portal with Paystack payment integration.',
+    note: 'The dashboard screenshots contain dummy and not production data',
     caseStudy: {
       problem:
         'The platform needed to serve a fundamentally split experience, a merchant-facing admin area for managing products, subscriptions, and orders, and multiple independent customer-facing storefronts, each on a custom domain, each looking like a standalone e-commerce store. The architectural challenge was building both surfaces in a way that shared UI logic without coupling the merchant and customer experiences.',
@@ -315,20 +317,103 @@ export const projects: Project[] = [
     images: [
       {
         src: '/alpha_shot1.png',
-        caption: 'Customer View - homepage and product listing',
+        caption: 'Customer View - shop and product listing',
       },
-      // {
-      //   src: 'https://images.unsplash.com/photo-1607082349566-187342175e2f?w=800',
-      //   caption: 'Customer View - product detail and alpha code search',
-      // },
-      // {
-      //   src: 'https://images.unsplash.com/photo-1556742111-a301076d9d18?w=800',
-      //   caption: 'Customer View - cart and dual gateway checkout (Paystack / Korapay)',
-      // },
-      // {
-      //   src: 'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=800',
-      //   caption: 'Customer View - order tracking',
-      // },
+      {
+        src: '/alpha_shot2.png',
+        caption: 'Customer View - product detail',
+      },
+      {
+        src: '/alpha_shot3.png',
+        caption: 'Customer View - cart',
+      },
+      {
+        src: '/alpha_shot4.png',
+        caption: 'Customer View - dual gateway checkout (Paystack / Korapay)',
+      },
+    ],
+  },
+  {
+    id: '5',
+    title: 'Waitr',
+    description: 'A QR-based restaurant ordering platform with split billing and a full operations dashboard, built solo from Figma to production-ready frontend.',
+    longDescription:
+      'Built end-to-end as the sole frontend engineer from a Figma design. Customers scan a QR code at their table to browse the menu, order, and pay, with split billing and order-type selection, while restaurant staff manage everything from menu items to live order processing on a role-aware admin dashboard. The project was feature-complete on the frontend when the client discontinued it before launch.',
+    caseStudy: {
+      problem:
+        'The client wanted to remove the friction of traditional restaurant ordering, no waiting for a server to take an order, no confusion over splitting a bill, and instant visibility into payment status. On the operations side, restaurant staff needed a single dashboard to manage menus, track orders in real time, and control who on their team could see or do what, since not every staff member should have the same level of access.',
+      approach:
+        'I split the build into two surfaces with different needs. The customer app used Next.js for fast initial loads on mobile devices scanning a QR code mid-meal, where every second of load time matters. The admin dashboard used React with Chart.js for the analytics views, since it needed to be a data-dense operational tool rather than a fast public-facing page. For payment confirmation, since there was no webhook event reaching the frontend directly, I implemented a polling mechanism that checked payment status at intervals until the backend confirmed the transaction, then surfaced the result immediately to the customer.',
+      decisions: [
+        'Used Next.js specifically for the customer app to get fast page loads on mobile networks, critical since customers scan a QR code and expect the menu to load almost instantly while seated at a table.',
+        'Built the split-bill and order-type selection (dine-in, takeout, delivery) as a single configurable checkout flow rather than separate pages, reducing the number of steps a customer has to take between ordering and paying.',
+        'Implemented role-based access control on the admin dashboard so restaurant owners/admins and staff see different views and permissions, a staff member taking orders does not need access to settlement accounts or staff management.',
+        'Chose polling over WebSockets for payment confirmation since the backend did not expose a push-based event for this specific flow, polling at sensible intervals balanced responsiveness with simplicity given the project constraints.',
+      ],
+      results: [
+        'Delivered a fully functional customer ordering flow from QR scan through to payment confirmation, including split billing and order type selection.',
+        'Built a complete 8-section admin dashboard (overview, menu, categories, orders, past orders, staff, payments, settlements) with role-based access for owners versus staff.',
+        'Entire frontend, both customer app and admin dashboard, was feature-complete and production-ready when the client discontinued the project for business reasons unrelated to engineering scope.',
+      ],
+    },
+    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500&h=300&fit=crop',
+    tags: ['Next.js', 'React', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'CSS Modules', 'Chart.js'],
+    link: 'https://waitr-user-app.vercel.app/',
+    isPrivate: true,
+    privateNote: 'Admin dashboard is currently inaccessible as the backend was taken offline after the project was discontinued. The customer-facing ordering app above is a demo version.',
+    images: [
+      {
+        src: '/waitr_shot1.png',
+        caption: 'Customer App - QR-triggered menu browsing and item search',
+      },
+      {
+        src: '/waitr_shot2.png',
+        caption: 'Customer App - cart and order instructions',
+      },
+      {
+        src: '/waitr_shot3.png',
+        caption: 'Customer App - split-bill checkout',
+      },
+    ],
+  },
+  {
+    id: '6',
+    title: 'Revvex',
+    description: 'An internal budgeting platform with multi-stage approval workflows, built for Zojatech.',
+    longDescription:
+      'A budgeting and financial planning platform built internally at Zojatech. Contributed to user management for budget team members and resolved issues across the budget preparation and multi-level approval workflow, where budgets move through 1st and 2nd level approvers up to budget manager and MD-level sign-off.',
+    note: 'The dashboard screenshots contain dummy and not production data',
+    caseStudy: {
+      problem:
+        'Budget preparation and approval at most organisations is a manual, slow process involving spreadsheets and email chains. Revvex needed to digitise this into a structured workflow where a budget could be created, reviewed by multiple approval levels in sequence, and tracked clearly at every stage, while ensuring each user only saw and acted on what their role permitted.',
+      approach:
+        'I worked within the existing Redux Toolkit and RTK Query architecture to fix issues across the budget preparation views and build out the user management screens. For the approval workflow specifically, I focused on making the multi-stage approval chain (1st approver, 2nd approver, budget team, budget manager, MD) behave predictably from a state perspective, since a budget needed to render differently depending on whose turn it was in the approval sequence and what actions were valid at each stage.',
+      decisions: [
+        'Used Formik for the budget creation and update forms given the multi-field, validation-heavy nature of budget entries, which kept form state and validation logic predictable across create and edit flows.',
+        'Modelled the approval chain so that the UI conditionally rendered available actions (approve, reject, request changes) based on the current approval stage and the logged-in user\'s role, rather than showing the same controls to everyone.',
+      ],
+      results: [
+        'Shipped working user management features for adding and viewing budget team members.',
+        'Resolved existing issues across the budget preparation flow, improving reliability of creating, updating, and viewing budgets.',
+        'Delivered a functional multi-level approval workflow spanning four distinct approval stages with role-aware UI behaviour at each step.',
+      ],
+    },
+    image: '/revvex_shot1.png',
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Redux Toolkit', 'RTK Query', 'Formik'],
+    link: 'https://zojatech.com/products/revvex',
+    images: [
+      {
+        src: '/revvex_shot1.png',
+        caption: 'Revvex - manage users',
+      },
+      {
+        src: '/revvex_shot2.png',
+        caption: 'Revvex - budget approval flow',
+      },
+      {
+        src: '/revvex_shot3.png',
+        caption: 'Revvex - create budget',
+      },
     ],
   },
 ];

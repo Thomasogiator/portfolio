@@ -123,3 +123,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: yellow;
+  border-radius: 10px;
+  border: 2px solid transparent;
+}

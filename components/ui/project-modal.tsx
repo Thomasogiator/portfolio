@@ -98,7 +98,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
               </button>
 
               {/* Scrollable content */}
-              <div className="overflow-y-auto flex-1">
+              <div className="overflow-y-auto flex-1 scrollbar-thin">
 
                 {/* ── IMAGE CAROUSEL ───────────────────────────────── */}
                 <div className="relative bg-muted/30 aspect-video overflow-hidden shrink-0">
@@ -120,14 +120,14 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                     <>
                       <button
                         onClick={handlePrevImage}
-                        className="absolute left-3 top-1/2 -translate-y-1/2 p-2 bg-background/80 hover:bg-background border border-border/40 rounded-lg transition-colors"
+                        className="absolute left-3 top-1/2 -translate-y-1/2 p-2 bg-background/80 hover:bg-background border border-border/40 rounded-lg transition-colors cursor-pointer"
                         aria-label="Previous screenshot"
                       >
                         <ChevronLeft className="w-4 h-4" />
                       </button>
                       <button
                         onClick={handleNextImage}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-background/80 hover:bg-background border border-border/40 rounded-lg transition-colors"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-background/80 hover:bg-background border border-border/40 rounded-lg transition-colors cursor-pointer"
                         aria-label="Next screenshot"
                       >
                         <ChevronRight className="w-4 h-4" />
@@ -217,6 +217,12 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                     <div className="bg-accent/5 border border-accent/20 rounded-lg px-4 py-3">
                       <p className="text-xs text-accent font-medium mb-0.5">🔒 Private Project</p>
                       <p className="text-sm text-muted-foreground">{project.privateNote}</p>
+                    </div>
+                  )}
+
+                  {project.note && project.note && (
+                    <div className="bg-accent/5 border border-accent/20 rounded-lg px-4 py-3">
+                      <p className="text-sm text-muted-foreground">{project.note}</p>
                     </div>
                   )}
 
