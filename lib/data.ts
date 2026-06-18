@@ -135,7 +135,7 @@ export const techStack = {
 export const projects: Project[] = [
   {
     id: '1',
-    title: 'HireMi',
+    title: 'HireMe',
     description: 'A two-sided job platform with real-time employer–candidate messaging built from scratch.',
     longDescription:
       'A full-scale talent marketplace built from scratch as sole frontend engineer with three distinct interface layers (a candidate portal, an employer portal, and a comprehensive admin dashboard). Includes real-time bidirectional chat using WebSockets (Socket.io).',
