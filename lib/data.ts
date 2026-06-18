@@ -58,7 +58,7 @@ export interface BlogPost {
 
 export const hero = {
   name: 'Thomas Ogiator',
-  title: 'Senior Frontend Engineer',
+  title: 'Frontend Engineer',
   roles: [
     'React Engineer',
     'Next.js Specialist',

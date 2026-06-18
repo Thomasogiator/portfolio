@@ -8,9 +8,9 @@ const geist = Geist({ subsets: ['latin'], variable: '--font-geist-sans' });
 const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' });
 
 export const metadata: Metadata = {
-  title: 'Thomas Ogiator — Senior Frontend Engineer',
+  title: 'Thomas Ogiator - Frontend Engineer',
   description:
-    'Senior Frontend Engineer with 4+ years building production web applications across fintech, e-commerce, and SaaS platforms. Specialising in React, Next.js, and TypeScript.',
+    'Frontend Engineer with 4+ years building production web applications across fintech, e-commerce, and SaaS platforms. Specialising in React, Next.js, and TypeScript.',
   generator: 'v0.app',
   icons: {
     icon: [
